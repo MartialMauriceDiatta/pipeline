@@ -9,15 +9,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Compiler le code avec Maven
-                sh 'mvn clean install'
+                // Compiler le code
+                sh 'javac Main.java'
             }
         }
         stage('Test') {
             steps {
-                // Exécuter les tests unitaires sur main.java
-                sh 'javac -cp .:/path/to/your/junit.jar MainTest.java'
-                sh 'java -cp .:/path/to/your/junit.jar:/path/to/your/hamcrest.jar org.junit.runner.JUnitCore MainTest'
+                // Exécuter les tests unitaires
+                sh 'java -cp .:junit.jar:hamcrest.jar org.junit.runner.JUnitCore MainTest'
             }
         }
         stage('Deploy') {
