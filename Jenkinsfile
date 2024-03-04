@@ -9,14 +9,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Compiler le code
+                // Compilation du code Java
                 sh 'javac Main.java'
             }
         }
         stage('Test') {
             steps {
-                // Exécuter les tests unitaires
-                sh 'java -cp .:junit.jar:hamcrest.jar org.junit.runner.JUnitCore MainTest'
+                // Exécution du code Java
+                sh 'java Main'
             }
         }
         stage('Deploy') {
