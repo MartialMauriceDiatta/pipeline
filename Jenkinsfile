@@ -12,9 +12,11 @@ pipeline:
     - stage: Test
       steps:
         - script:
-            - mvn test
+            - javac -cp .:/path/to/your/junit.jar MainTest.java
+            - java -cp .:/path/to/your/junit.jar:/path/to/your/hamcrest.jar org.junit.runner.JUnitCore MainTest
     - stage: Deploy
       steps:
         - script:
             - echo "Déploiement sur le serveur de production en cours"
+
 
