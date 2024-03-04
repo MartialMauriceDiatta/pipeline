@@ -1,0 +1,16 @@
+pipeline:
+  agent:
+    any
+  stages:
+    - stage: Checkout
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+    - stage: Build
+      steps:
+        - name: Compile Java code
+          run: javac main.java
+    - stage: Run
+      steps:
+        - name: Run Java program
+          run: java main
