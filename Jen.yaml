@@ -1,16 +1,17 @@
-jobs:
-- job: checkout
-  steps:
-  - script: checkout scm
-- job: build
-  dependsOn: checkout
-  steps:
-  - script: javac HelloWorld.java
-- job: test
-  dependsOn: build
-  steps:
-  - script: java HelloWorld
-- job: deploy
-  dependsOn: test
-  steps:
-  - script: echo "Déploiement sur le serveur de production en cours"
+stages:
+  - name: "checkout"
+    steps:
+      - checkout: scm
+  - name: "build"
+    dependsOn: "checkout"
+    steps:
+      - script: "javac HelloWorld.java"
+  - name: "test"
+    dependsOn: "build"
+    steps:
+      - script: "java HelloWorld"
+  - name: "deploy"
+    dependsOn: "test"
+    steps:
+      - script: 'echo "Déploiement sur le serveur de production en cours"'
+
