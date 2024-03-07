@@ -1,15 +1,26 @@
-pipeline:
-  agent: any
-  stages:
-    - stage: Checkout
-      steps:
-        - checkout: scm
-    - stage: Build
-      steps:
-        - bat: 'javac HelloWorld.java'
-    - stage: Test
-      steps:
-        - bat: 'java HelloWorld'
-    - stage: Deploy
-      steps:
-        - echo: "Déploiement sur le serveur de production en cours"
+resources:
+  containers:
+  - container: windows
+    image: mcr.microsoft.com/windows/servercore:ltsc2019
+
+jobs:
+- job: checkout
+  container: windows
+  steps:
+  - script: checkout scm
+- job: build
+  dependsOn: checkout
+  container: windows
+  steps:
+  - script: javac HelloWorld.java
+- job: test
+  dependsOn: build
+  container: windows
+  steps:
+  - script: java HelloWorld
+- job: deploy
+  dependsOn: test
+  container: windows
+  steps:
+  - script: echo "Déploiement sur le serveur de production en cours"
+
