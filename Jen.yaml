@@ -1,19 +1,18 @@
----
-stages:
-  - name: "checkout"
-    steps:
-      - script: "checkout scm"
-  - name: "build"
-    dependsOn: "checkout"
-    steps:
-      - script: "javac HelloWorld.java"
-  - name: "test"
-    dependsOn: "build"
-    steps:
-      - script: "java HelloWorld"
-  - name: "deploy"
-    dependsOn: "test"
-    steps:
-      - script: 'echo "Déploiement sur le serveur de production en cours"'
+pipeline:
+  agent: any
+  stages:
+    - stage: Checkout
+      steps:
+        - checkout: scm
+    - stage: Build
+      steps:
+        - bat: 'javac HelloWorld.java'
+    - stage: Test
+      steps:
+        - bat: 'java HelloWorld'
+    - stage: Deploy
+      steps:
+        - echo: "Déploiement sur le serveur de production en cours"
+
 
 
