@@ -1,7 +1,8 @@
+---
 stages:
   - name: "checkout"
     steps:
-      - checkout: scm
+      - script: "checkout scm"
   - name: "build"
     dependsOn: "checkout"
     steps:
@@ -14,4 +15,5 @@ stages:
     dependsOn: "test"
     steps:
       - script: 'echo "Déploiement sur le serveur de production en cours"'
+
 
