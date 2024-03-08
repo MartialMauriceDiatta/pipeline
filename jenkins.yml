@@ -3,13 +3,17 @@ pipeline:
   stages:
     - stage: "Checkout"
       steps:
+       script:
         - echo: "Checkout du code source"
     - stage: "Build"
       steps:
-        - echo: "Compilation du code avec javac"
+        script:
+         - echo: "Compilation du code avec javac"
     - stage: "Test"
       steps:
-        - echo: "Exécution des tests avec java HelloWorld"
+        script:
+         - echo: "Exécution des tests avec java HelloWorld"
     - stage: "Deploy"
       steps:
-        - echo: "Déploiement sur le serveur de production en cours"
+        script:
+         - echo: "Déploiement sur le serveur de production en cours"
