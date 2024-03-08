@@ -1,15 +1,15 @@
 pipeline:
   agent: any
   stages:
-    - name: Checkout
+    - stage: "Checkout"
       steps:
         - checkout: scm
-    - name: Build
+    - stage: "Build"
       steps:
         - bat: 'javac HelloWorld.java'
-    - name: Test
+    - stage: "Test"
       steps:
         - bat: 'java HelloWorld'
-    - name: Deploy
+    - stage: "Deploy"
       steps:
         - echo: "Déploiement sur le serveur de production en cours"
